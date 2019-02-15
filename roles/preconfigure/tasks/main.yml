@@ -1,0 +1,10 @@
+---
+- name: Copy ssh key to vagrant boxes
+  become: true
+  authorized_key:
+    user: "{{ item }}"
+    state: present
+    key: "{{ lookup('file', '/Users/seven62/.ssh/local_ansible.pub') }}"
+  with_items:
+    - "{{ ssh.users }}"
+...
